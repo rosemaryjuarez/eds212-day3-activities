@@ -1,0 +1,97 @@
+---
+title: "Untitled"
+format: revealjs
+editor: visual
+execute: 
+  warning: false
+---
+
+```{r}
+library(tidyverse)
+```
+
+# libraPart 1:
+
+## Task 1:
+
+Create an object called 'pm2_5\`'with a value of 48 (representing Particulate Matter 2.5, an indicator for air quality, in μgm3���3 (see more about PM2.5 [here](https://www3.epa.gov/region1/airquality/pm-aq-standards.html)).
+
+Write an `if - else if - else` statement that returns \"Low to moderate risk\" if `pm2_5` (for Particulate Matter 2.5) is less than 100, \"Unhealthy for sensitive groups\" if PM 2.5 is 100 \<= pm2_5 \< 150, and \"Health risk present\" if PM 2.5 is \>= 150.
+
+Test by changing the value of your pm2_5 object and re-running your statement to check.
+
+```{r}
+pm2_5 <- 160
+
+if (pm2_5 < 100) {
+  print('Low to moderate risk')
+} else if (100 <= pm2_5 & pm2_5< 150) {
+  print('Unhealthy for sensitive groups')
+} else {
+  print('Health risk present')
+}
+```
+
+## task 2
+
+Store the string \"blue whale\" as an object called `species`. Write an if statement that returns \"You found a whale!\" if the string \"whale\" is detected in species, otherwise return nothing. Test by changing the species string & re-running to see output.
+
+```{r}
+species = 'blue whale'
+
+if (str_detect(species, 'blue whale')) {
+  print('You found a whale!')
+}
+```
+
+## task 3
+
+Store the base price of a burrito as `base_burrito` with a value of 6.50. Store `main_ingredient` with a starting string of \"veggie.\" Write a statement that will return the price of a burrito based on what a user specifies as \"main_ingredient\" (either \"veggie\", \"chicken\" or \"steak\") given the following:
+
+-   A veggie burrito is the cost of a base burrito
+
+-   A chicken burrito costs 3.00 more than a base burrito
+
+-   A steak burrito costs 3.25 more than a base burrito
+
+```{r}
+base_burrito <- 6.50
+
+main_ingredient <- 'veggie'
+
+switch (main_ingredient,
+  'veggie' = print(base_burrito),
+  'chicken' = print(base_burrito + 3.00),
+  'steak' = print(base_burrito + 3.25)
+) 
+```
+
+#### **Task 4**
+
+Create a new vector called `fish` that contains the values `8, 10, 12, 23` representing counts of different fish types in a fish tank (goldfish, tetras, guppies, and mollies, respectively). Write a for loop that iterates through `fish`, and returns what proportion of total fish in the tank are that species. Assume that these counts represent all fish in the tank.
+
+```{r}
+fish <- c(goldfish = 8,
+          tetras = 10,
+          guppies = 12,
+          mollies = 23)
+
+
+for (fishies in seq_along(fish)) {
+  print(fish[[fishies]]/ sum(fish))
+}
+```
+
+## task 5
+
+#### **Task 5**
+
+There is an existing vector in R called `month.name` that contains all month names (just ry running `month.name` in the Console to check it out). **Write a for loop** that iterates over all months in `month.name` and prints \"January is month 1,\" \"February is month 2\", etc.
+
+**Hint:** you can index values in the `month.name` vector just like you would any other vector (e.g., try running `month.name[5]`).
+
+```{r}
+for (months in seq_along(month.name)) {
+  print(paste(month.name[months], 'is month', months ))
+}
+```
