@@ -1,0 +1,51 @@
+---
+title: toolik chem
+execute:
+  warning: FALSE
+---
+
+```{r}
+library(tidyverse)
+library(here)
+library(janitor)
+```
+
+1.  Read in the data as `toolik_biochem`. Remember, you\'ll want to specify here how `NA` values are stored. Pipe directly into `janitor::clean_names()` following your import code to get all column names into lower snake case.
+
+```{r}
+toolik_biochem <- read_csv(here('data', '2011_kling_Akchem.csv'),
+                           na = c('.')) %>% 
+  clean_names()
+
+```
+
+1.  Create a subset of the data that contains only observations from the \"Toolik Inlet\" site, and that only contains the variables (columns) for pH, dissolved organic carbon (DOC), and total dissolved nitrogen (TDN) (**hint:** see `dplyr::select()`). Store this subset as `inlet_biochem`. Make sure to look at the subset you\'ve created.
+
+```{r}
+inlet_biochem <- toolik_biochem %>% 
+  select(p_h, doc_u_m, tdn_u_m)
+```
+
+1.  Find the mean value of each column in `inlet_biochem` 3 different ways:
+
+```{=html}
+<!-- -->
+```
+1.  Write a for loop from scratch to calculate the mean for each
+
+2.  Use *one other method* (e.g. `apply`, `across`, or `purrr::map_df`) to find the mean for each column.
+
+```{r}
+# method A
+apply(inlet_biochem, 2, mean, na.rm = TRUE)
+```
+
+```{r}
+#method B
+
+for (i in seq_along(inlet_biochem)) {
+  mean_inlet <- mean(inlet_biochem[[i]], na.rm = TRUE)
+  print(mean_inlet)
+}
+
+```
